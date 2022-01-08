@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/login_curves"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:background="@drawable/ic_curves"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/login_title_main"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="105dp"
+        android:text="Καλως ήρθατε στο DigiCampus."
+        android:textSize="56dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/playfair_display_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <EditText
+        android:id="@+id/login_form_email"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/login_input"
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="16sp"
+        android:textColor="@color/form_input_hint"
+        android:inputType="textPersonName"
+        android:hint="@string/login_email_input"
+        android:textColorHint="@color/form_input_hint"
+        app:layout_constraintBottom_toTopOf="@+id/input_form_layout_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_form_layout_password"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/login_signin_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/dark_text"
+        android:textColorHint="@color/form_input_hint"
+        >
+
+        <EditText
+            android:id="@+id/input_form_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/login_password_input"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:textColor="@color/form_input_hint"
+            android:textColorHint="@color/black"
+            android:background="@drawable/login_input"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_signin_btn"
+        style="@style/login_button"
+        android:layout_marginBottom="12dp"
+        android:text="ΣΎΝΔΕΣΗ"
+        app:layout_constraintBottom_toTopOf="@+id/login_or_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/login_or_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/dark_text"
+        android:text="Ή"
+        app:layout_constraintBottom_toTopOf="@+id/login_signup_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+  />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/login_button"
+        android:id="@+id/login_signup_btn"
+        android:layout_marginBottom="16dp"
+        android:text="ΕΓΓΡΑΦΉ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
