@@ -1,5 +1,6 @@
 package com.project.digicampus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -20,6 +21,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     private Context context;
@@ -27,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signup_btn;
     private EditText input_email;
     private EditText input_password;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -36,14 +44,42 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         setLoginTitleText();
+        mAuth = FirebaseAuth.getInstance();
         login_btn = findViewById(R.id.login_signin_btn);
+        input_email = findViewById(R.id.login_form_email);
+        input_password = findViewById(R.id.login_form_password);
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHome();
+                Log.d("LOGIN", input_email.getText().toString().trim());
+                Log.d("LOGIN", input_password.getText().toString().trim());
+                mAuth.signInWithEmailAndPassword(input_email.getText().toString().trim(), input_password.getText().toString().trim())
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    // Login Success
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    openHome();
+                                } else {
+                                    // Login Fail
+
+                                }
+                            }
+                        });
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            // Logged in go to next activity as signed in
+            FirebaseUser user = mAuth.getCurrentUser();
+        }
     }
 
 
@@ -62,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openHome(){
+        // Construct intent
         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
         startActivity(intent);
     }

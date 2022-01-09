@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "738744227851",
+    "project_id": "digicampus-29612",
+    "storage_bucket": "digicampus-29612.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738744227851:android:61665677ec2ba16561cf0e",
+        "android_client_info": {
+          "package_name": "com.project.digicampus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738744227851-37ush60ro00snpr0lh2d8ltkiaicijld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9VAXQgTmjv-VpKrLXDE68MDkN9gU65Pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738744227851-37ush60ro00snpr0lh2d8ltkiaicijld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

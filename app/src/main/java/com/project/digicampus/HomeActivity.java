@@ -16,6 +16,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.project.digicampus.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
@@ -55,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         // Load and setup dynamic navdrawer items
         final Menu menu = navigationView.getMenu();
         menu.add("Runtime");
@@ -62,12 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         final SubMenu subMenu = menu.addSubMenu("Μαθήματα");
         subMenu.add("Μάθημα 1");
 
-        // Setup nav contents
+
+        // Setup nav header contents
         View headerView = navigationView.getHeaderView(0);
         nav_user_name = headerView.findViewById(R.id.nav_drawer_user_name);
         nav_user_email = headerView.findViewById(R.id.nav_drawer_user_email);
-        nav_user_name.setText("PLZ WORK");
-        nav_user_email.setText("PLZ WORK");
+        nav_user_name.setText(currentUser.getDisplayName());
+        nav_user_email.setText(currentUser.getEmail());
     }
 
     @Override

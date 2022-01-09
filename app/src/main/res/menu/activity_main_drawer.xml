@@ -17,4 +17,14 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
     </group>
+    <group android:title="More Options" android:checkable="true">
+        <menu>
+            <item
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Foraum" />
+            <item
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Headset" />
+        </menu>
+    </group>
 </menu>
