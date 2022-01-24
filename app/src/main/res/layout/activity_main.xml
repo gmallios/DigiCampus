@@ -21,8 +21,8 @@
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:layout_marginTop="105dp"
-        android:text="Καλως ήρθατε στο DigiCampus."
-        android:textSize="56dp"
+        android:text="@string/login_toptext"
+        android:textSize="56sp"
         android:textStyle="bold"
         android:fontFamily="@font/playfair_display_bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,19 +36,18 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/login_input"
+        style="@style/input_text"
         android:ems="10"
-        android:paddingLeft="16dp"
-        android:fontFamily="@font/roboto"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:textSize="16sp"
-        android:textColor="@color/form_input_hint"
         android:inputType="textEmailAddress"
         android:hint="@string/login_email_input"
-        android:textColorHint="@color/form_input_hint"
         app:layout_constraintBottom_toTopOf="@+id/input_form_layout_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="Autofill" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_form_layout_password"
@@ -69,18 +68,18 @@
             android:id="@+id/login_form_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            style="@style/input_text"
             android:ems="10"
-            android:fontFamily="@font/roboto"
             android:hint="@string/login_password_input"
             android:inputType="textPassword"
-            android:paddingLeft="16dp"
-            android:textColor="@color/form_input_hint"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:textColorHint="@color/black"
-            android:background="@drawable/login_input"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="Autofill" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -88,7 +87,7 @@
         android:id="@+id/login_signin_btn"
         style="@style/login_button"
         android:layout_marginBottom="12dp"
-        android:text="ΣΎΝΔΕΣΗ"
+        android:text="@string/login_signin_btn"
         app:layout_constraintBottom_toTopOf="@+id/login_or_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -100,7 +99,7 @@
         android:fontFamily="@font/roboto"
         android:layout_marginBottom="12dp"
         android:textColor="@color/dark_text"
-        android:text="Ή"
+        android:text="@string/login_or_txt"
         app:layout_constraintBottom_toTopOf="@+id/login_signup_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +109,7 @@
         style="@style/login_button"
         android:id="@+id/login_signup_btn"
         android:layout_marginBottom="16dp"
-        android:text="ΕΓΓΡΑΦΉ"
+        android:text="@string/login_signup_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

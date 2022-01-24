@@ -11,4 +11,10 @@
     <color name="login_text_digicampus">#4C4D47</color>
     <color name="login_button_bg">#212121</color>
     <color name="form_input_hint">#757575</color>
+    <color name="primary"></color>
+    <color name="secondary"></color>
+    <color name="dark_100">#121212</color>
+    <color name="dark_200">#353535</color>
+    <color name="navmenu_item_color">#AEAEAE</color>
+    <color name="card_bg">#383838</color>
 </resources>

@@ -48,27 +48,27 @@ public class MainActivity extends AppCompatActivity {
         login_btn = findViewById(R.id.login_signin_btn);
         input_email = findViewById(R.id.login_form_email);
         input_password = findViewById(R.id.login_form_password);
+        signup_btn = findViewById(R.id.login_signup_btn);
 
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("LOGIN", input_email.getText().toString().trim());
-                Log.d("LOGIN", input_password.getText().toString().trim());
-                mAuth.signInWithEmailAndPassword(input_email.getText().toString().trim(), input_password.getText().toString().trim())
-                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    // Login Success
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    openHome();
-                                } else {
-                                    // Login Fail
+        signup_btn.setOnClickListener(v -> {
+            Intent openSignup = new Intent(MainActivity.this,SignupActivity.class);
+            startActivity(openSignup);
+        });
 
-                                }
-                            }
-                        });
-            }
+        login_btn.setOnClickListener(v -> {
+            Log.d("LOGIN", input_email.getText().toString().trim());
+            Log.d("LOGIN", input_password.getText().toString().trim());
+            mAuth.signInWithEmailAndPassword(input_email.getText().toString().trim(), input_password.getText().toString().trim())
+                    .addOnCompleteListener(MainActivity.this, task -> {
+                        if(task.isSuccessful()){
+                            // Login Success
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            openHome();
+                        } else {
+                            // Login Fail
+
+                        }
+                    });
         });
     }
 
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             // Logged in go to next activity as signed in
             FirebaseUser user = mAuth.getCurrentUser();
+            openHome();
         }
     }
 

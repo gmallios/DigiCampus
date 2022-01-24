@@ -1,0 +1,33 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Εμφάνιση">
+
+        <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
+            app:defaultValue="@color/white"
+            app:key="primary_color_setting"
+            app:title="@string/pri_color_text"/>
+
+        <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
+            app:defaultValue="@color/white"
+            app:key="primary_color_setting"
+            app:title="@string/sec_color_text"/>
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="@string/sync_title" />
+
+        <SwitchPreferenceCompat
+            app:dependency="sync"
+            app:key="attachment"
+            app:summaryOff="@string/attachment_summary_off"
+            app:summaryOn="@string/attachment_summary_on"
+            app:title="@string/attachment_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
