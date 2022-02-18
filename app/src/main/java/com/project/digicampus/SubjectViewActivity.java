@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.project.digicampus.home_ui.Announcements.AnnouncementsFragment;
 import com.project.digicampus.models.SubjectModel;
 import com.project.digicampus.subject_ui.SubjectAnnouncementFragment;
+import com.project.digicampus.subject_ui.SubjectAssignmentsFragment;
+import com.project.digicampus.subject_ui.SubjectAttendanceFragment;
 import com.project.digicampus.subject_ui.SubjectGroupsFragment;
 
 import java.util.Objects;
@@ -27,6 +29,8 @@ public class SubjectViewActivity extends AppCompatActivity implements Navigation
 
     SubjectAnnouncementFragment announcementsFragment = new SubjectAnnouncementFragment();
     SubjectGroupsFragment subjectGroupsFragment = new SubjectGroupsFragment();
+    SubjectAssignmentsFragment subjectAssignmentsFragment = new SubjectAssignmentsFragment();
+    SubjectAttendanceFragment subjectAttendanceFragment = new SubjectAttendanceFragment();
 
 
     @Override
@@ -62,14 +66,19 @@ public class SubjectViewActivity extends AppCompatActivity implements Navigation
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.announcement_bottom_menu:
-                replaceFragment(R.id.fragment_layout_subjectview, announcementsFragment);
-                return true;
-            case R.id.groups_bottom_menu:
-               replaceFragment(R.id.fragment_layout_subjectview, subjectGroupsFragment);
-               return true;
+        int itemId = item.getItemId();
+        if (itemId == R.id.announcement_bottom_menu) {
+            replaceFragment(R.id.fragment_layout_subjectview, announcementsFragment);
+            return true;
+        } else if (itemId == R.id.groups_bottom_menu) {
+            replaceFragment(R.id.fragment_layout_subjectview, subjectGroupsFragment);
+            return true;
+        } else if (itemId == R.id.assignments_bottom_menu) {
+            replaceFragment(R.id.fragment_layout_subjectview, subjectAssignmentsFragment);
+            return true;
+        } else if (itemId == R.id.attendance_bottom_menu) {
+            replaceFragment(R.id.fragment_layout_subjectview, subjectAttendanceFragment);
+            return true;
         }
         return false;
     }

@@ -12,7 +12,7 @@
         />
     <item
         android:id="@+id/assignments_bottom_menu"
-        android:title="@string/menu_announcements"
+        android:title="@string/menu_assignments"
         android:icon="@drawable/ic_baseline_assignment_24"
         />
     <item
