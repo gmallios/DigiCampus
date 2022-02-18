@@ -15,7 +15,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/card_subject_img"
@@ -56,9 +56,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/card_subject_img"
+            android:paddingBottom="20dp"
             android:text="@string/example_description"
             android:textColor="@color/white"
-            android:paddingBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -72,9 +72,9 @@
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
             android:contentDescription="@string/app_name"
             android:padding="5dp"
-            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_baseline_done_24"
             app:layout_constraintBottom_toTopOf="@+id/card_subject_info"
             app:layout_constraintEnd_toEndOf="parent"

@@ -12,6 +12,13 @@
         tools:layout="@layout/fragment_announcements" />
 
     <fragment
+        android:id="@+id/nav_calendar"
+        android:name="com.project.digicampus.home_ui.HomeCalendarFragment"
+        android:label="@string/menu_calendar"
+        tools:layout="@layout/fragment_home_calendar"
+        />
+
+    <fragment
         android:id="@+id/nav_subjects"
         android:name="com.project.digicampus.home_ui.Subjects.SubjectsFragment"
         android:label="@string/menu_subjects"

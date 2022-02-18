@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".subject_ui.SubjectGroupsFragment">
+    tools:context=".home_ui.HomeCalendarFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/subject_groups_recyclerview"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="12dp"
-        android:scrollbars="vertical"
-        />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

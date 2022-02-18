@@ -96,7 +96,8 @@ public class SubjectViewActivity extends AppCompatActivity implements Navigation
     private void replaceFragment(int viewID, Fragment newFragment){
         Bundle dataToPass = new Bundle();
         dataToPass.putString("SUBJECT_ID", mSubjectID);
-        dataToPass.putStringArrayList("SUBJECT_GROUPS_IDS", mSubject.getGroups());
+        if(mSubject != null)
+            dataToPass.putStringArrayList("SUBJECT_GROUPS_IDS", mSubject.getGroups());
         newFragment.setArguments(dataToPass);
         getSupportFragmentManager().beginTransaction().replace(viewID, newFragment).commit();
     }
