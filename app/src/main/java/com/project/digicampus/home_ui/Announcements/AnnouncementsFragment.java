@@ -48,22 +48,24 @@ public class AnnouncementsFragment extends Fragment {
                             mAnnouncements.add(model);
                             assert model != null;
                             Log.d("Announcements", "Received announcement " + model.getTitle());
-                            mCardAdapter = new AnnouncementCardAdapter(getActivity(), mAnnouncements);
-                            mCardAdapter.setOnItemClickListener(new AnnouncementCardAdapter.ClickListener() {
-                                @Override
-                                public void onItemClick(int position, View v) {
-                                    Log.d("Anouncement", "clicked on item");
-                                }
 
-                                @Override
-                                public void onItemLongClick(int position, View v) {
 
-                                }
-                            });
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                            mRecyclerView.setLayoutManager(linearLayoutManager);
-                            mRecyclerView.setAdapter(mCardAdapter);
                         }
+                        mCardAdapter = new AnnouncementCardAdapter(getActivity(), mAnnouncements);
+                        mCardAdapter.setOnItemClickListener(new AnnouncementCardAdapter.ClickListener() {
+                            @Override
+                            public void onItemClick(int position, View v) {
+                                Log.d("Anouncement", "clicked on item");
+                            }
+
+                            @Override
+                            public void onItemLongClick(int position, View v) {
+
+                            }
+                        });
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        mRecyclerView.setLayoutManager(linearLayoutManager);
+                        mRecyclerView.setAdapter(mCardAdapter);
                     }
                 });
         return root;

@@ -1,6 +1,7 @@
 package com.project.digicampus;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -35,6 +36,15 @@ public class SubjectViewActivity extends AppCompatActivity implements Navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Setup ActionBar
+        ActionBar mActionBar = getSupportActionBar();
+
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
+        //Get data from activity
         Bundle data = getIntent().getExtras();
 
         if(data == null)
@@ -54,7 +64,7 @@ public class SubjectViewActivity extends AppCompatActivity implements Navigation
             } else {
                 DataSnapshot dataObj = task.getResult();
                 mSubject = dataObj.getValue(SubjectModel.class);
-
+                Objects.requireNonNull(getSupportActionBar()).setTitle(mSubject.getName());
             }
         });
 
@@ -84,6 +94,19 @@ public class SubjectViewActivity extends AppCompatActivity implements Navigation
     }
 
     private void replaceFragment(int viewID, Fragment newFragment){
+        Bundle dataToPass = new Bundle();
+        dataToPass.putString("SUBJECT_ID", mSubjectID);
+        dataToPass.putStringArrayList("SUBJECT_GROUPS_IDS", mSubject.getGroups());
+        newFragment.setArguments(dataToPass);
         getSupportFragmentManager().beginTransaction().replace(viewID, newFragment).commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,5 +1,7 @@
 package com.project.digicampus.models;
 
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 public class SubjectModel {
