@@ -2,14 +2,20 @@
 
     <PreferenceCategory app:title="Εμφάνιση">
 
-        <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
+        <com.skydoves.colorpickerpreference.ColorPickerPreference
             app:defaultValue="@color/white"
             app:key="primary_color_setting"
+            app:preference_colorBox_radius="26dp"
+            app:preference_dialog_negative="@string/cancel"
+            app:preference_dialog_positive="@string/confirm"
             app:title="@string/pri_color_text"/>
 
-        <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
+        <com.skydoves.colorpickerpreference.ColorPickerPreference
             app:defaultValue="@color/white"
             app:key="primary_color_setting"
+            app:preference_colorBox_radius="26dp"
+            app:preference_dialog_negative="@string/cancel"
+            app:preference_dialog_positive="@string/confirm"
             app:title="@string/sec_color_text"/>
 
 

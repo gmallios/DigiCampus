@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_announcements"
-        android:name="com.project.digicampus.ui.Announcements.AnnouncementsFragment"
+        android:name="com.project.digicampus.home_ui.Announcements.AnnouncementsFragment"
         android:label="@string/menu_announcements"
         tools:layout="@layout/fragment_announcements" />
 
     <fragment
         android:id="@+id/nav_subjects"
-        android:name="com.project.digicampus.ui.Subjects.SubjectsFragment"
+        android:name="com.project.digicampus.home_ui.Subjects.SubjectsFragment"
         android:label="@string/menu_subjects"
         tools:layout="@layout/fragment_subjects" />
 

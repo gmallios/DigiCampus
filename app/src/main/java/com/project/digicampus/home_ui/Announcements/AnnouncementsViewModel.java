@@ -1,4 +1,4 @@
-package com.project.digicampus.ui.Announcements;
+package com.project.digicampus.home_ui.Announcements;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

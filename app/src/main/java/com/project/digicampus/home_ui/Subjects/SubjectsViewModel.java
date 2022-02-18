@@ -1,4 +1,4 @@
-package com.project.digicampus.ui.Subjects;
+package com.project.digicampus.home_ui.Subjects;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

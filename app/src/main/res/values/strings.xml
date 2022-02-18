@@ -70,4 +70,12 @@
     <string name="login_signin_btn">ΣΎΝΔΕΣΗ</string>
     <string name="login_or_txt">Ή</string>
     <string name="login_signup_btn">ΕΓΓΡΑΦΉ</string>
+    <string name="signup_form_pass_text">Κωδικός Πρόσβασης</string>
+    <string name="signup_form_password_confirmation">Επιβεβαίωση Κωδικού</string>
+    <string name="cancel">Ακύρωση</string>
+    <string name="confirm">Επιβεβαίωση</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subject_groups">Ομάδες Χρηστών</string>
+    <string name="attendance">Απουσίες</string>
 </resources>

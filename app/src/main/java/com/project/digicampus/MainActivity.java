@@ -1,31 +1,26 @@
 package com.project.digicampus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getApplicationContext();
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
         setLoginTitleText();
         mAuth = FirebaseAuth.getInstance();
@@ -56,19 +51,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         login_btn.setOnClickListener(v -> {
-            Log.d("LOGIN", input_email.getText().toString().trim());
-            Log.d("LOGIN", input_password.getText().toString().trim());
-            mAuth.signInWithEmailAndPassword(input_email.getText().toString().trim(), input_password.getText().toString().trim())
-                    .addOnCompleteListener(MainActivity.this, task -> {
-                        if(task.isSuccessful()){
-                            // Login Success
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            openHome();
-                        } else {
-                            // Login Fail
-
-                        }
-                    });
+            if(Utils.isEditTextEmpty(input_email) || Utils.isEditTextEmpty(input_password)){
+                input_password.setError("", new ColorDrawable(Color.TRANSPARENT));
+                input_email.setError("");
+            } else {
+                mAuth.signInWithEmailAndPassword(input_email.getText().toString().trim(), input_password.getText().toString().trim())
+                        .addOnCompleteListener(MainActivity.this, task -> {
+                            if (task.isSuccessful()) {
+                                // Login Success
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                openHome();
+                            } else {
+                                // Login Fail
+                                Log.w("SignIN", "signInWithEmail:failure", task.getException());
+                                input_password.setError("", new ColorDrawable(Color.TRANSPARENT));
+                                input_email.setError("");
+                            }
+                        });
+            }
         });
     }
 
@@ -103,4 +103,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
         startActivity(intent);
     }
+
 }

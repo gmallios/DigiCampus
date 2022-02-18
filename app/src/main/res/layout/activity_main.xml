@@ -33,9 +33,11 @@
 
     <EditText
         android:id="@+id/login_form_email"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
         style="@style/input_text"
         android:ems="10"
         android:paddingStart="16dp"
@@ -51,9 +53,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_form_layout_password"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
         app:layout_constraintBottom_toTopOf="@+id/login_signin_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +90,11 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_signin_btn"
         style="@style/login_button"
+        android:layout_width="0dp"
         android:layout_marginBottom="12dp"
         android:text="@string/login_signin_btn"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
         app:layout_constraintBottom_toTopOf="@+id/login_or_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -107,9 +114,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         style="@style/login_button"
+        android:layout_width="0dp"
         android:id="@+id/login_signup_btn"
-        android:layout_marginBottom="16dp"
-        android:text="@string/login_signup_btn"
+        android:layout_marginBottom="@dimen/signup_form_padding_sides"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"        android:text="@string/login_signup_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

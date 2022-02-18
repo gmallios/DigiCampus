@@ -47,7 +47,7 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
         holder.subjectModel = model; // Pass whole model
         holder.subjectNameTextView.setText(model.getName());
         holder.subjectInfoTextView.setText(model.getDescription());
-        holder.subjectSubscribedView.setVisibility(View.INVISIBLE);
+        holder.subjectSubscribedView.setVisibility(View.INVISIBLE); //TODO: Display checkmark on subscribed
 
     }
 

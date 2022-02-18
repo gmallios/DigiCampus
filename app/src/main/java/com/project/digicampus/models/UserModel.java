@@ -7,13 +7,23 @@ public class UserModel {
     private String firstName;
     private String lastName;
     private Integer userType;
+    private String birthDate;
 
-    public UserModel(String firebaseUID, String email, String firstName, String lastName, Integer userType) {
+    public UserModel(String firebaseUID, String email, String firstName, String lastName, Integer userType, String birthDate) {
         this.firebaseUID = firebaseUID;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
+        this.birthDate = birthDate;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getFirebaseUID() {

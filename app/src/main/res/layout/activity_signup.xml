@@ -13,12 +13,12 @@
         android:id="@+id/signup_toptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/playfair_display_bold"
         android:text="@string/signup_title"
         android:textSize="35sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +27,7 @@
         android:id="@+id/signup_form_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/roboto"
         android:text="@string/signup_form_name_text"
@@ -39,7 +39,7 @@
         style="@style/input_text"
         android:layout_width="0dp"
         android:layout_height="35dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
         android:layout_marginTop="4dp"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/signup_form_surname_input"
@@ -65,7 +65,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -90,8 +90,8 @@
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,31 +99,86 @@
         tools:ignore="Autofill,LabelFor" />
 
     <TextView
+        android:id="@+id/signup_form_password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/signup_form_pass_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_form_email_input"/>
+
+    <EditText
+        android:id="@+id/signup_form_password_input"
+        style="@style/input_text"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_form_password_text"
+        tools:ignore="Autofill,LabelFor" />
+
+    <TextView
+        android:id="@+id/signup_form_password_confirmation_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/signup_form_password_confirmation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_form_password_input" />
+
+    <EditText
+        android:id="@+id/signup_form_password_confirmation_input"
+        style="@style/input_text"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
+        android:layout_marginTop="4dp"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_form_password_confirmation_text"
+        tools:ignore="Autofill,LabelFor" />
+
+    <TextView
         android:id="@+id/signup_form_radiogroup_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto"
         android:text="@string/signup_form_radiogroup_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_form_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_form_password_confirmation_input" />
 
     <RadioGroup
         android:id="@+id/signup_form_accountype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:checkedButton="@id/signup_form_radiogroup_student"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_form_radiogroup_text">
 
         <RadioButton
+            android:id="@+id/signup_form_radiogroup_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student" />
 
         <RadioButton
+            android:id="@+id/signup_form_radiogroup_professor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/professor" />
@@ -146,14 +201,27 @@
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
         android:focusable="false"
         android:longClickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_form_age_text"
         tools:ignore="Autofill,LabelFor,TextFields" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:id="@+id/signup_form_button"
+        style="@style/login_button"
+        android:text="@string/login_signup_btn"
+        android:layout_marginBottom="@dimen/signup_form_padding_sides"
+        android:layout_marginStart="@dimen/signup_form_padding_sides"
+        android:layout_marginEnd="@dimen/signup_form_padding_sides"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

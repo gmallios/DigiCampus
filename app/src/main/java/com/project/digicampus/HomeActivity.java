@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private DatabaseReference userDB;
     private UserModel mUser;
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private FirebaseUser currentUser;
     private NavigationView navigationView;
 
@@ -106,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
             }
             else {
                 mUser = gson.fromJson(String.valueOf(task.getResult().getValue()), UserModel.class);
-
+                //Log.d("BIRTHDATE", mUser.getBirthDate());
                 // Setup nav header contents
                 View headerView = navigationView.getHeaderView(0);
                 nav_user_name = headerView.findViewById(R.id.nav_drawer_user_name);

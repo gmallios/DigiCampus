@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/announcement_bottom_menu"
+        android:title="@string/menu_announcements"
+        android:icon="@drawable/ic_baseline_announcement_24"
+        />
+    <item
+        android:id="@+id/groups_bottom_menu"
+        android:title="@string/subject_groups"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+        />
+    <item
+        android:id="@+id/assignments_bottom_menu"
+        android:title="@string/menu_announcements"
+        android:icon="@drawable/ic_baseline_assignment_24"
+        />
+    <item
+        android:id="@+id/attendance_bottom_menu"
+        android:title="@string/attendance"
+        android:icon="@drawable/ic_baseline_playlist_add_check_24"
+        />
+</menu>

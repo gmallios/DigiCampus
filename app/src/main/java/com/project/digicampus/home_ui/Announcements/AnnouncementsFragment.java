@@ -1,28 +1,23 @@
-package com.project.digicampus.ui.Announcements;
+package com.project.digicampus.home_ui.Announcements;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.project.digicampus.Utils;
 import com.project.digicampus.adapters.AnnouncementCardAdapter;
-import com.project.digicampus.adapters.SubjectCardAdapter;
 import com.project.digicampus.databinding.FragmentAnnouncementsBinding;
 import com.project.digicampus.models.AnnouncementModel;
-import com.project.digicampus.models.SubjectModel;
 
 import java.util.ArrayList;
 
@@ -42,7 +37,7 @@ public class AnnouncementsFragment extends Fragment {
         binding = FragmentAnnouncementsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         mRecyclerView = binding.announcementsRecyclerview;
-        DatabaseReference announcementsDB = FirebaseDatabase.getInstance("https://digicampus-29612-default-rtdb.europe-west1.firebasedatabase.app/").getReference("/announcements");
+        DatabaseReference announcementsDB = Utils.getAnnouncementDBRef();
         announcementsDB.get().addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
                         Log.e("firebase", "Error getting data", task.getException());
