@@ -23,7 +23,6 @@ android {
     }
     compileOptions {
         // Flag to enable support for the new language APIs
-        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -36,6 +35,7 @@ apply plugin: 'com.google.gms.google-services'
 
 
 dependencies {
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-auth'
