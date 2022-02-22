@@ -10,29 +10,15 @@
 
 
     <TextView
-        android:id="@+id/signup_toptext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/playfair_display_bold"
-        android:text="@string/signup_title"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
         android:id="@+id/signup_form_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="@dimen/signup_form_padding_sides"
-        android:layout_marginTop="60dp"
         android:fontFamily="@font/roboto"
         android:text="@string/signup_form_name_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_toptext" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/signup_form_name_input"
@@ -52,11 +38,11 @@
         android:id="@+id/signup_form_surname_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto"
         android:text="@string/signup_form_surname_text"
         app:layout_constraintStart_toStartOf="@+id/signup_form_surname_input"
-        app:layout_constraintTop_toBottomOf="@+id/signup_toptext" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/signup_form_surname_input"

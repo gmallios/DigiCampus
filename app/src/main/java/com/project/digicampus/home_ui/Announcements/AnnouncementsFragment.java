@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
+import com.project.digicampus.R;
 import com.project.digicampus.Utils;
 import com.project.digicampus.adapters.AnnouncementCardAdapter;
 import com.project.digicampus.databinding.FragmentAnnouncementsBinding;
@@ -28,6 +30,7 @@ public class AnnouncementsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private AnnouncementCardAdapter mCardAdapter;
     private ArrayList<AnnouncementModel> mAnnouncements;
+    private ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class AnnouncementsFragment extends Fragment {
         mAnnouncements = new ArrayList<>();
         binding = FragmentAnnouncementsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        progressBar = root.findViewById(R.id.progress_bar_home_announcements);
         mRecyclerView = binding.announcementsRecyclerview;
         DatabaseReference announcementsDB = Utils.getAnnouncementDBRef();
         announcementsDB.get().addOnCompleteListener(task -> {
@@ -66,6 +70,7 @@ public class AnnouncementsFragment extends Fragment {
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                         mRecyclerView.setLayoutManager(linearLayoutManager);
                         mRecyclerView.setAdapter(mCardAdapter);
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
         return root;

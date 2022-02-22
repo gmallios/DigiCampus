@@ -8,7 +8,14 @@
     tools:context=".home_ui.Announcements.AnnouncementsFragment">
 
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar_home_announcements"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/announcements_recyclerview"
         android:layout_width="match_parent"

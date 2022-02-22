@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/show_example_notification"
+        android:orderInCategory="100"
+        android:title="@string/show_notification_text"
+        app:showAsAction="never"
+        />
+    <item
         android:id="@+id/menu_action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

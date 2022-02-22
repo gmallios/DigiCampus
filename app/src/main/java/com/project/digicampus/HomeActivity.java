@@ -1,8 +1,12 @@
 package com.project.digicampus;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -12,6 +16,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,10 +40,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.project.digicampus.databinding.ActivityHomeBinding;
+import com.project.digicampus.models.SubjectModel;
 import com.project.digicampus.models.UserModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -56,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        loadSubjectsToUtils();
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -84,16 +94,6 @@ public class HomeActivity extends AppCompatActivity {
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         loadUserData();
-
-//        // Load and setup dynamic navdrawer items
-//        final Menu menu = navigationView.getMenu();
-//        menu.add("Runtime");
-//
-//        final SubMenu subMenu = menu.addSubMenu("Μαθήματα");
-//        subMenu.add("Μάθημα 1");
-
-
-
 
     }
 
@@ -123,30 +123,31 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.home, menu);
 
         // Fix menu item color
-        MenuItem item = menu.getItem(0);
-        MenuItem item2 = menu.getItem(1);
-        SpannableString s = new SpannableString(getString(R.string.action_settings));
-        SpannableString s2 = new SpannableString(getString(R.string.text_menu_action_logout));
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
-        s2.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s2.length(), 0);
-        item.setTitle(s);
-        item2.setTitle(s2);
-
-
+        for(int i=0; i<menu.size();i++){
+            MenuItem item = menu.getItem(i);
+            SpannableString s = new SpannableString(item.getTitle());
+            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+            item.setTitle(s);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        if(item.getItemId() == R.id.menu_action_settings){
+        int id = item.getItemId();
+        if(id == R.id.menu_action_settings){
             Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(settingsIntent);
             return true;
-        } else if(item.getItemId() == R.id.menu_action_logout){
+        } else if(id == R.id.menu_action_logout){
             FirebaseAuth.getInstance().signOut();
             Intent logOut = new Intent(this, MainActivity.class);
             logOut.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(logOut);
+            return true;
+        } else if(id == R.id.show_example_notification){
+            createNotificationChannel();
+            showExampleNotification();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -157,5 +158,59 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    private void showExampleNotification(){
+        String SUBJECT_ID = "-MuC5rf2GOKcsEu2QqGj";
+        String ANNOUNC_ID = "";
+        String subjectName;
+        Intent notifIntent = new Intent(this,SubjectViewActivity.class);
+        notifIntent.putExtra("SUBJ_RTDB_ID", SUBJECT_ID);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notifIntent, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "0")
+                .setSmallIcon(R.drawable.ic_baseline_announcement_24)
+                .setContentTitle(String.format("Νέα ανακοίνωση στο μάθημα %s", Objects.requireNonNull(Utils.mSubjectIDMap.get(SUBJECT_ID)).getName()))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
+    }
+
+    @SuppressLint("ObsoleteSdkInt")
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("0", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
+    private void loadSubjectsToUtils(){
+        DatabaseReference subjectsDB = Utils.getSubjectDBRef();
+
+        subjectsDB.get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                DataSnapshot dataObj = task.getResult();
+                for (DataSnapshot rootSubjectSnapshot : dataObj.getChildren()) {
+                    String key = rootSubjectSnapshot.getKey();
+                    SubjectModel model = rootSubjectSnapshot.getValue(SubjectModel.class);
+                    Utils.mSubjectIDMap.put(key, model);
+                }
+            }
+        });
     }
 }

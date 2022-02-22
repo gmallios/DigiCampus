@@ -3,6 +3,7 @@ package com.project.digicampus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -43,6 +44,8 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(getString(R.string.signup_title));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);

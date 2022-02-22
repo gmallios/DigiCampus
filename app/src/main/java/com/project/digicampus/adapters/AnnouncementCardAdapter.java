@@ -1,5 +1,6 @@
 package com.project.digicampus.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,11 @@ import com.project.digicampus.models.AnnouncementModel;
 import com.project.digicampus.models.SubjectModel;
 import com.project.digicampus.models.UserModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class AnnouncementCardAdapter extends RecyclerView.Adapter<AnnouncementCardAdapter.Viewholder> {
@@ -58,7 +63,9 @@ public class AnnouncementCardAdapter extends RecyclerView.Adapter<AnnouncementCa
             else {
                 SubjectModel subjectModel = task.getResult().getValue(SubjectModel.class);
                 assert subjectModel != null;
-                holder.announcementSubjectName.setText(subjectModel.getName());
+                Date time = new Date(model.getDate());
+                @SuppressLint("SimpleDateFormat") DateFormat fmt  = new SimpleDateFormat("hh:mm dd/MM/yyyy");
+                holder.announcementSubjectName.setText(String.format("%s - %s",subjectModel.getName(), fmt.format(time)));
             }
         });
 
@@ -101,14 +108,18 @@ public class AnnouncementCardAdapter extends RecyclerView.Adapter<AnnouncementCa
         }
 
 
+
+        // v = null if users comes from notification
         @Override
         public void onClick(View v) {
-            clickListener.onItemClick(getAdapterPosition(), v);
+            if(v != null)
+                clickListener.onItemClick(getAdapterPosition(), v);
         }
 
         @Override
         public boolean onLongClick(View v) {
-            clickListener.onItemLongClick(getAdapterPosition(), v);
+            if(v != null)
+                clickListener.onItemLongClick(getAdapterPosition(), v);
             return false;
         }
 

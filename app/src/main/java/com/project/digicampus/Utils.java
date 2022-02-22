@@ -4,8 +4,17 @@ import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.project.digicampus.models.SubjectModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Utils {
+
+    //Maps ID->SubjectModel
+    public static HashMap<String, SubjectModel> mSubjectIDMap = new HashMap<>();
+
+
     static boolean isEditTextEmpty(EditText etText) {
         return etText.getText().toString().trim().length() <= 0;
     }
@@ -23,4 +32,6 @@ public class Utils {
    public static DatabaseReference getUserDBRef(){ return getDBInstance().getReference("/users"); }
    public static DatabaseReference getSubjectDBRef() { return getDBInstance().getReference("/subjects"); }
    public static DatabaseReference getAnnouncementDBRef() { return getDBInstance().getReference("/announcements"); }
+
+
 }
