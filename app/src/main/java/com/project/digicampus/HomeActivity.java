@@ -50,6 +50,10 @@ import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
 
+    //TODO: - Search
+    //      - LongClick
+    //      - Notification
+
     private TextView nav_user_name;
     private TextView nav_user_email;
 
