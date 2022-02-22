@@ -96,7 +96,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-            if(password.equals(Utils.getEditTextString(passwordConfirmText)))
+            if(!password.equals(Utils.getEditTextString(passwordConfirmText)))
                 formOk = false;
 
             if(formOk){
