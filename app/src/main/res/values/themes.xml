@@ -34,4 +34,6 @@
     <style name="Theme.DigiCampus.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.DigiCampus.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

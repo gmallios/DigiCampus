@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/dark_100"
-            app:popupTheme="@style/Theme.DigiCampus.PopupOverlay" />
+            app:popupTheme="@style/Theme.DigiCampus.PopupOverlay"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

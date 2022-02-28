@@ -4,16 +4,20 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.project.digicampus.models.AnnouncementModel;
+
+import java.util.ArrayList;
+
 public class AnnouncementsViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<ArrayList<AnnouncementModel>> mAnnouncementModels;
 
     public AnnouncementsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mAnnouncementModels = new MutableLiveData<ArrayList<AnnouncementModel>>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setmAnnouncementModels(ArrayList<AnnouncementModel> models){
+        mAnnouncementModels.setValue(models);
     }
+
 }

@@ -24,8 +24,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -38,8 +40,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.project.digicampus.databinding.ActivityHomeBinding;
+import com.project.digicampus.home_ui.Announcements.AnnouncementsFragment;
+import com.project.digicampus.home_ui.Subjects.SubjectsFragment;
 import com.project.digicampus.models.SubjectModel;
 import com.project.digicampus.models.UserModel;
 
@@ -65,10 +70,14 @@ public class HomeActivity extends AppCompatActivity {
     private final Gson gson = new Gson();
     private FirebaseUser currentUser;
     private NavigationView navigationView;
+    private NavController navController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseMessaging.getInstance().getToken();
+
         super.onCreate(savedInstanceState);
         loadSubjectsToUtils();
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
@@ -91,7 +100,8 @@ public class HomeActivity extends AppCompatActivity {
                 R.id.nav_announcements, R.id.nav_subjects, R.id.nav_calendar)
                 .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -126,9 +136,36 @@ public class HomeActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
 
+        // Setup searchview
+        MenuItem searchViewItem = menu.findItem(R.id.menu_action_search);
+        SearchView searchView = (SearchView) searchViewItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(getCurrentFragment() instanceof AnnouncementsFragment){
+                    AnnouncementsFragment frag = (AnnouncementsFragment) getCurrentFragment();
+                    frag.getAdapter().getFilter().filter(s);
+                } else if(getCurrentFragment() instanceof SubjectsFragment){
+                    SubjectsFragment frag = (SubjectsFragment) getCurrentFragment();
+                    frag.getAdapter().getFilter().filter(s);
+                }
+                return false;
+            }
+        });
+
+
         // Fix menu item color
-        for(int i=0; i<menu.size();i++){
+        for(int i=1; i<menu.size();i++){
             MenuItem item = menu.getItem(i);
+            if(item.equals(searchViewItem))
+                break; // Not searchviewitem
             SpannableString s = new SpannableString(item.getTitle());
             s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
             item.setTitle(s);
@@ -216,5 +253,12 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+
+    private Fragment getCurrentFragment(){
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_home);
+        return currentFragment == null ? null : currentFragment.getChildFragmentManager().getFragments().get(0);
     }
 }

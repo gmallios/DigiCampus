@@ -34,6 +34,7 @@ public class AnnouncementsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         announcementsViewModel =
                 new ViewModelProvider(this).get(AnnouncementsViewModel.class);
         mAnnouncements = new ArrayList<>();
@@ -73,6 +74,8 @@ public class AnnouncementsFragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                     }
                 });
+
+
         return root;
     }
 
@@ -81,4 +84,9 @@ public class AnnouncementsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    public AnnouncementCardAdapter getAdapter(){
+        return mCardAdapter;
+    }
+
 }

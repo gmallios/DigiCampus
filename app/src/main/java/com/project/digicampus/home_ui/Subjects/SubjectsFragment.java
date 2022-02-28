@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class SubjectsFragment extends Fragment {
     private Map<SubjectModel, String> mSubjectsKV; // Maps subjectid to subject class
     private Gson gson;
     private ProgressBar mProgressBar;
+    private SubjectCardAdapter subjectCardAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,7 +65,7 @@ public class SubjectsFragment extends Fragment {
                     mSubjects.add(model);
                     mSubjectsKV.put(model, key);
                 }
-                SubjectCardAdapter subjectCardAdapter = new SubjectCardAdapter(getActivity(), mSubjects);
+                subjectCardAdapter = new SubjectCardAdapter(getActivity(), mSubjects);
 
                 subjectCardAdapter.setOnItemClickListener(new SubjectCardAdapter.ClickListener() {
                     @Override
@@ -112,5 +114,9 @@ public class SubjectsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public SubjectCardAdapter getAdapter(){
+        return subjectCardAdapter;
     }
 }
